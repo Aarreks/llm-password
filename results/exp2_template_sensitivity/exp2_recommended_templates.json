@@ -1,0 +1,25 @@
+{
+  "best_continuation_template": {
+    "template_id": "C3_task_continue_field",
+    "template_group": "C_end_pin_not_ends_prefix",
+    "n_pairs": 57,
+    "avg_linked_minus_control_llm": -4.329692943951736,
+    "median_linked_minus_control_llm": -2.77352647868748,
+    "frac_linked_easier": 0.8596491228070176,
+    "avg_control_minus_linked_llm": 4.329692943951736
+  },
+  "best_structural_template": {
+    "template_id": "S5_simple_explanation",
+    "template_group": "compression",
+    "n_pos": 57,
+    "n_neg": 35,
+    "n_ambiguous": 57,
+    "mean_p_yes_pos": 0.6167560908597336,
+    "mean_p_yes_neg": 0.58829434896423,
+    "mean_p_yes_ambiguous": 0.614791782224798,
+    "false_positive_rate_at_0p8": 0.0,
+    "false_negative_rate_at_0p8": 1.0,
+    "separation_pos_minus_neg": 0.0284617418955035,
+    "auc_pos_vs_neg": 0.6756892230576441
+  }
+}

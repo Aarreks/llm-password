@@ -1,0 +1,53 @@
+template_id,task,group,enabled,text,notes
+A0_current_vulnerable,continuation,A_no_end_pin_ends_prefix,True,Very long but vulnerable password: {prefix},Original template; natural raw continuation after prefix.
+A1_weak_password,continuation,A_no_end_pin_ends_prefix,True,Weak password: {prefix},Short password-context baseline.
+A2_common_user_password,continuation,A_no_end_pin_ends_prefix,True,Common user password: {prefix},Frames prefix as common user-chosen password.
+A3_leaked_password,continuation,A_no_end_pin_ends_prefix,True,Leaked password: {prefix},Frames prefix as leaked password text.
+A4_password_dump_line,continuation,A_no_end_pin_ends_prefix,True,"Leaked passwords, one per line:
+{prefix}",Dump/list style; still ends at prefix.
+B0_continue_no_spaces,continuation,B_end_pin_ends_prefix,True,Continue this vulnerable password with no spaces or explanation: {prefix},End-pinned but next token is still directly after prefix.
+B1_only_prefix_longer,continuation,B_end_pin_ends_prefix,True,The following is only the prefix of a longer password. Continue the password: {prefix},Explicitly says the password is not finished.
+B2_attacker_extends,continuation,B_end_pin_ends_prefix,True,An attacker is extending this guessed password prefix. Next characters: {prefix},Attacker framing; still ends at prefix.
+B3_not_finished_exactly,continuation,B_end_pin_ends_prefix,True,This password is not finished. Continue it exactly: {prefix},Direct end-pin instruction.
+B4_predictable_human_prefix,continuation,B_end_pin_ends_prefix,True,Human-chosen password with a predictable continuation: {prefix},Pushes model toward human pattern continuation.
+C0_prefix_continuation_field,continuation,C_end_pin_not_ends_prefix,True,"Password prefix: {prefix}
+Continuation:","Instruction field; model predicts continuation answer, not raw next char after prefix."
+C1_output_remaining_only,continuation,C_end_pin_not_ends_prefix,True,"Complete the password. Output only the remaining password characters.
+Prefix: {prefix}
+Remaining characters:",Very explicit task form; may distort raw continuation probabilities.
+C2_attacker_rest_field,continuation,C_end_pin_not_ends_prefix,True,"An attacker has guessed the prefix below and now guesses the rest.
+Prefix: {prefix}
+Rest:",Attacker field form.
+C3_task_continue_field,continuation,C_end_pin_not_ends_prefix,True,"Task: continue the password prefix.
+Prefix: {prefix}
+Continuation:",Generic instruction-following form.
+S0_broad_original,structural,broad,True,"Password: {password}
+
+Does this password contain an obvious human-generated pattern, sequence, phrase, cultural association, or rule that a password meter may overestimate? (yes/no):",Original broad structural prompt.
+S1_attacker_rule,structural,attacker,True,"Password: {password}
+
+Would a password attacker see an obvious rule, sequence, phrase, fandom reference, or semantic association in this password? (yes/no):",Attacker-oriented structural prompt.
+S2_length_meter_overestimate,structural,overestimate,True,"Password: {password}
+
+Would a length-based password meter likely overestimate this password because it contains a human-recognizable structure? (yes/no):",Directly targets meter overestimation.
+S3_short_generator,structural,compression,True,"Password: {password}
+
+Is there a short human-readable rule or explanation that generates most of this password much faster than brute force? (yes/no):",Compression/generator formulation; likely strong for sequences.
+S4_reject_structured,structural,policy,True,"Password: {password}
+
+Should this password be rejected for having a recognizable human-generated structure, pattern, phrase, sequence, or cultural association? (yes/no):",Policy-oriented rejection prompt.
+S5_simple_explanation,structural,compression,True,"Password: {password}
+
+Is there any simple explanation that would let someone generate or guess this password much faster than brute force? (yes/no):",Very direct short-explanation detector.
+S6_sequence_specific,structural,sequence,True,"Password: {password}
+
+Does this password contain an obvious counting sequence, arithmetic sequence, alphabet progression, repeated rule, or other structured sequence? (yes/no):",Sequence-specific detector.
+S7_semantic_specific,structural,semantic,True,"Password: {password}
+
+Does this password contain a meaningful phrase, pop-culture/fandom reference, domain-specific association, or predictable relationship between parts? (yes/no):",Semantic-specific detector.
+S8_not_random,structural,broad,True,"Password: {password}
+
+Does this password look intentionally constructed from a pattern or meaningful chunks rather than randomly generated characters? (yes/no):",Random-vs-constructed framing.
+S9_security_auditor,structural,attacker,True,"Password under audit: {password}
+
+As a password security auditor, is there an obvious structure or association here that a normal strength meter could miss? Answer yes or no:",Security-auditor framing.

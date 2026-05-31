@@ -1,0 +1,7 @@
+{
+  "best_template_id": "R1_score_then_justification_direct",
+  "best_approach": "score_then_justification",
+  "auc_yes_vs_no": 0.8110275689223058,
+  "separation_yes_minus_no": 37.23659147869674,
+  "parse_rate": 1.0
+}

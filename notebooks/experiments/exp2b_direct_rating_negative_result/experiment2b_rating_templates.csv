@@ -1,0 +1,49 @@
+template_id,approach,enabled,max_new_tokens,user_prompt,notes
+R1_score_then_justification_direct,score_then_justification,True,120,"Password: {password}
+
+Rate how likely this password is to contain an obvious human-generated pattern, sequence, phrase, cultural/fandom association, or rule that a password meter may overestimate.
+
+Return only valid JSON with keys in this exact order:
+{{""risk_score"": <integer 0-100>, ""category"": <one of [""none"", ""sequence"", ""phrase"", ""cultural_association"", ""repetition"", ""personal_info_like"", ""other""]>, ""justification"": <one short sentence>}}
+
+Score meaning: 0 = random-looking/no obvious structure, 100 = very obvious human-generated structure.","Score first, then explanation. Direct broad prompt."
+R2_score_then_justification_attacker,score_then_justification,True,120,"Password: {password}
+
+A password attacker wants to find shortcuts. Rate whether this password has a simple rule or association that would make it much easier than brute force.
+
+Return only valid JSON with keys in this exact order:
+{{""risk_score"": <integer 0-100>, ""category"": <one of [""none"", ""sequence"", ""phrase"", ""cultural_association"", ""repetition"", ""personal_info_like"", ""other""]>, ""justification"": <one short sentence>}}
+
+Score meaning: 0 = no shortcut apparent, 100 = obvious shortcut.","Score first, attacker framing."
+R3_justification_then_score_direct,justification_then_score,True,140,"Password: {password}
+
+First identify any visible human-generated structure, sequence, phrase, cultural/fandom association, or rule. Then rate how much a password meter might overestimate this password.
+
+Return only valid JSON with keys in this exact order:
+{{""justification"": <one short sentence>, ""category"": <one of [""none"", ""sequence"", ""phrase"", ""cultural_association"", ""repetition"", ""personal_info_like"", ""other""]>, ""risk_score"": <integer 0-100>}}
+
+Score meaning: 0 = random-looking/no obvious structure, 100 = very obvious human-generated structure.","Explanation first, then score."
+R4_justification_then_score_short_generator,justification_then_score,True,140,"Password: {password}
+
+Look for a short way to generate this password: counting, alphabet steps, repeated units, known names, pop-culture references, phrases, or related chunks. Explain the shortest obvious rule if one exists, then score the risk.
+
+Return only valid JSON with keys in this exact order:
+{{""justification"": <one short sentence>, ""category"": <one of [""none"", ""sequence"", ""phrase"", ""cultural_association"", ""repetition"", ""personal_info_like"", ""other""]>, ""risk_score"": <integer 0-100>}}
+
+Score meaning: 0 = no short rule apparent, 100 = extremely short obvious rule.","Explanation first, short-generator wording."
+R5_no_justification_direct,no_justification,True,60,"Password: {password}
+
+Rate how likely this password is to contain an obvious human-generated pattern, sequence, phrase, cultural/fandom association, or rule that a password meter may overestimate.
+
+Return only valid JSON with keys in this exact order:
+{{""risk_score"": <integer 0-100>, ""category"": <one of [""none"", ""sequence"", ""phrase"", ""cultural_association"", ""repetition"", ""personal_info_like"", ""other""]>}}
+
+Score meaning: 0 = random-looking/no obvious structure, 100 = very obvious human-generated structure.","Score only, no explanation."
+R6_no_justification_attacker,no_justification,True,60,"Password: {password}
+
+A password attacker wants to find shortcuts. Rate whether this password has a simple rule or association that would make it much easier than brute force.
+
+Return only valid JSON with keys in this exact order:
+{{""risk_score"": <integer 0-100>, ""category"": <one of [""none"", ""sequence"", ""phrase"", ""cultural_association"", ""repetition"", ""personal_info_like"", ""other""]>}}
+
+Score meaning: 0 = no shortcut apparent, 100 = obvious shortcut.","Score only, attacker wording."
