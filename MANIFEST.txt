@@ -1,0 +1,15 @@
+.gitignore
+README.md
+data/README.md
+data/stage0_bad_substrings.csv
+notebooks/archive/experiment1d_reference_32_32_32.ipynb
+notebooks/final_password_router_demo.ipynb
+notebooks/stage0_bad_substrings.csv
+requirements.txt
+results/README.md
+results/code_fragment_reject_interactive_run.txt
+results/math_structured_accept_report.txt
+results/random_autoaccept_report.txt
+results/stage0_stable_substring_rejects_report.txt
+scripts/generate_stage0_bad_substrings.py
+src/password_router_demo.py

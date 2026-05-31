@@ -1,0 +1,9 @@
+transformers
+accelerate
+zxcvbn
+requests
+tqdm
+pandas
+sentencepiece
+pyahocorasick
+torch

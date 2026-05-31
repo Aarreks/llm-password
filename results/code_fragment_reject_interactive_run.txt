@@ -1,0 +1,9 @@
+LLM Password Routing Demo Result: code fragment sanity check
+================================================================================
+Input: for (int i = 0; i < n; i++)
+Final verdict: REJECT
+Final reason: raw DP score 14.57 < 20.0
+
+This interactive run checks that the LLM-DP stage rejects common code-like strings
+that can look syntactically complex to a surface-pattern checker but are highly
+predictable to a code-capable language model.

@@ -1,0 +1,241 @@
+LLM Password Routing Demo Report
+================================================================================
+Generated: 2026-05-31T07:53:18
+
+Configuration
+--------------------------------------------------------------------------------
+1.5B model: Qwen/Qwen2.5-1.5B-Instruct
+7B escalation allowed: True
+7B model: mistralai/Mistral-7B-Instruct-v0.3
+Input format: one raw password per line
+DP method: Experiment-1-style exact token DP over one raw target string
+No user-provided separators and no loop over all possible split positions
+Automatic prefix chars before target: 0
+DP reject threshold: whole_score < 15.0
+DP early accept threshold: whole_score > 25.0
+Stage 0 zxcvbn reject cutoff: 10.0
+Stage 0 patched reject cutoff: 10.0
+Aho bad-substring patterns loaded: 21555
+Stable zxcvbn substring length range: 2..32
+Stable zxcvbn max substring calls per password: 2500
+
+================================================================================
+Password 1: 'wolfgoarfarf'
+Final verdict: REJECT
+Final reason: zxcvbn log10 8.58 < 10.0; patched Stage 0 log10 7.60 < 10.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 3
+zxcvbn guesses_log10: 8.58
+patched Stage 0 log10: 7.60
+Markov/Aho penalty vs zxcvbn: 0.98
+stable zxcvbn substring candidates added: 66
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] 'wolf' stable_zxcvbn:dictionary cost=2.67
+  - [4:6] 'go' stable_zxcvbn:dictionary cost=1.63
+  - [6:12] 'arfarf' stable_zxcvbn:repeat cost=3.30
+Stage 0 decision: REJECT
+  - zxcvbn log10 8.58 < 10.0
+  - patched Stage 0 log10 7.60 < 10.0
+
+================================================================================
+Password 2: 'wolfgoarfarf1'
+Final verdict: REJECT
+Final reason: patched Stage 0 log10 8.60 < 10.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 11.12
+patched Stage 0 log10: 8.60
+Markov/Aho penalty vs zxcvbn: 2.52
+stable zxcvbn substring candidates added: 78
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] 'wolf' stable_zxcvbn:dictionary cost=2.67
+  - [4:6] 'go' stable_zxcvbn:dictionary cost=1.63
+  - [6:12] 'arfarf' stable_zxcvbn:repeat cost=3.30
+  - [12:13] '1' brute_char cost=1.00
+Stage 0 decision: REJECT
+  - patched Stage 0 log10 8.60 < 10.0
+
+================================================================================
+Password 3: 'wolfgoarfarf11'
+Final verdict: REJECT
+Final reason: patched Stage 0 log10 8.98 < 10.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 11.78
+patched Stage 0 log10: 8.98
+Markov/Aho penalty vs zxcvbn: 2.80
+stable zxcvbn substring candidates added: 91
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] 'wolf' stable_zxcvbn:dictionary cost=2.67
+  - [4:6] 'go' stable_zxcvbn:dictionary cost=1.63
+  - [6:12] 'arfarf' stable_zxcvbn:repeat cost=3.30
+  - [12:14] '11' stable_zxcvbn:repeat cost=1.38
+Stage 0 decision: REJECT
+  - patched Stage 0 log10 8.98 < 10.0
+
+================================================================================
+Password 4: 'wolfgoarfarf111'
+Final verdict: REJECT
+Final reason: patched Stage 0 log10 9.16 < 10.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 11.78
+patched Stage 0 log10: 9.16
+Markov/Aho penalty vs zxcvbn: 2.62
+stable zxcvbn substring candidates added: 105
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] 'wolf' stable_zxcvbn:dictionary cost=2.67
+  - [4:6] 'go' stable_zxcvbn:dictionary cost=1.63
+  - [6:12] 'arfarf' stable_zxcvbn:repeat cost=3.30
+  - [12:15] '111' stable_zxcvbn:repeat cost=1.56
+Stage 0 decision: REJECT
+  - patched Stage 0 log10 9.16 < 10.0
+
+================================================================================
+Password 5: 'wolfgoarfarf1111'
+Final verdict: REJECT
+Final reason: patched Stage 0 log10 9.28 < 10.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 11.78
+patched Stage 0 log10: 9.28
+Markov/Aho penalty vs zxcvbn: 2.49
+stable zxcvbn substring candidates added: 120
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] 'wolf' stable_zxcvbn:dictionary cost=2.67
+  - [4:6] 'go' stable_zxcvbn:dictionary cost=1.63
+  - [6:12] 'arfarf' stable_zxcvbn:repeat cost=3.30
+  - [12:16] '1111' stable_zxcvbn:repeat cost=1.68
+Stage 0 decision: REJECT
+  - patched Stage 0 log10 9.28 < 10.0
+
+================================================================================
+Password 6: 'wolfgoarfarf11111'
+Final verdict: REJECT
+Final reason: patched Stage 0 log10 9.38 < 10.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 11.86
+patched Stage 0 log10: 9.38
+Markov/Aho penalty vs zxcvbn: 2.48
+stable zxcvbn substring candidates added: 136
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] 'wolf' stable_zxcvbn:dictionary cost=2.67
+  - [4:6] 'go' stable_zxcvbn:dictionary cost=1.63
+  - [6:12] 'arfarf' stable_zxcvbn:repeat cost=3.30
+  - [12:17] '11111' stable_zxcvbn:repeat cost=1.78
+Stage 0 decision: REJECT
+  - patched Stage 0 log10 9.38 < 10.0
+
+================================================================================
+Password 7: 'wolfgoarfarf111111'
+Final verdict: REJECT
+Final reason: patched Stage 0 log10 8.51 < 10.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 11.78
+patched Stage 0 log10: 8.51
+Markov/Aho penalty vs zxcvbn: 3.27
+stable zxcvbn substring candidates added: 153
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] 'wolf' stable_zxcvbn:dictionary cost=2.67
+  - [4:6] 'go' stable_zxcvbn:dictionary cost=1.63
+  - [6:12] 'arfarf' stable_zxcvbn:repeat cost=3.30
+  - [12:18] '111111' stable_zxcvbn:dictionary cost=0.90
+Stage 0 decision: REJECT
+  - patched Stage 0 log10 8.51 < 10.0
+
+================================================================================
+Password 8: 'wolfgoarfarf1111111'
+Final verdict: REJECT
+Final reason: patched Stage 0 log10 9.51 < 10.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 12.00
+patched Stage 0 log10: 9.51
+Markov/Aho penalty vs zxcvbn: 2.50
+stable zxcvbn substring candidates added: 171
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] 'wolf' stable_zxcvbn:dictionary cost=2.67
+  - [4:6] 'go' stable_zxcvbn:dictionary cost=1.63
+  - [6:12] 'arfarf' stable_zxcvbn:repeat cost=3.30
+  - [12:13] '1' brute_char cost=1.00
+  - [13:19] '111111' stable_zxcvbn:dictionary cost=0.90
+Stage 0 decision: REJECT
+  - patched Stage 0 log10 9.51 < 10.0
+
+================================================================================
+Password 9: 'wolfgoarfarf11111111'
+Final verdict: REJECT
+Final reason: patched Stage 0 log10 9.40 < 10.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 11.88
+patched Stage 0 log10: 9.40
+Markov/Aho penalty vs zxcvbn: 2.48
+stable zxcvbn substring candidates added: 190
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] 'wolf' stable_zxcvbn:dictionary cost=2.67
+  - [4:6] 'go' stable_zxcvbn:dictionary cost=1.63
+  - [6:12] 'arfarf' stable_zxcvbn:repeat cost=3.30
+  - [12:20] '11111111' stable_zxcvbn:dictionary cost=1.80
+Stage 0 decision: REJECT
+  - patched Stage 0 log10 9.40 < 10.0
+
+================================================================================
+Password 10: 'wolfgoarfarf111111111'
+Final verdict: REJECT
+Final reason: patched Stage 0 log10 9.64 < 10.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 12.05
+patched Stage 0 log10: 9.64
+Markov/Aho penalty vs zxcvbn: 2.41
+stable zxcvbn substring candidates added: 210
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] 'wolf' stable_zxcvbn:dictionary cost=2.67
+  - [4:6] 'go' stable_zxcvbn:dictionary cost=1.63
+  - [6:12] 'arfarf' stable_zxcvbn:repeat cost=3.30
+  - [12:21] '111111111' stable_zxcvbn:repeat cost=2.03
+Stage 0 decision: REJECT
+  - patched Stage 0 log10 9.64 < 10.0

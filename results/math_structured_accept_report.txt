@@ -1,0 +1,108 @@
+LLM Password Routing Demo Report
+================================================================================
+Generated: 2026-05-31T08:36:00
+
+Configuration
+--------------------------------------------------------------------------------
+1.5B model: Qwen/Qwen2.5-1.5B-Instruct
+7B escalation allowed: True
+7B model: mistralai/Mistral-7B-Instruct-v0.3
+Input format: one raw password per line
+DP method: Experiment-1-style exact token DP over one raw target string
+No user-provided separators and no loop over all possible split positions
+Automatic prefix chars before target: 0
+DP reject threshold: whole_score < 20.0
+DP early accept threshold: whole_score > 32.0
+Stage 0 zxcvbn reject cutoff: 10.0
+Stage 0 patched reject cutoff: 10.0
+Aho bad-substring patterns loaded: 21555
+Stable zxcvbn substring length range: 2..32
+Stable zxcvbn max substring calls per password: 2500
+
+================================================================================
+Password 1: '727sqrt(621.136)'
+Final verdict: ACCEPT
+Final reason: ACCEPT: final raw DP score 24.95 >= 20.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 16.00
+patched Stage 0 log10: 15.32
+Markov/Aho penalty vs zxcvbn: 0.68
+stable zxcvbn substring candidates added: 112
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:4] '727s' stable_zxcvbn:whole_substring cost=4.00
+  - [4:6] 'qr' stable_zxcvbn:sequence cost=1.72
+  - [6:9] 't(6' stable_zxcvbn:whole_substring cost=3.00
+  - [9:11] '21' stable_zxcvbn:sequence cost=1.60
+  - [11:16] '.136)' stable_zxcvbn:whole_substring cost=5.00
+Stage 0 decision: no reject; use raw token DP
+
+DP escalation trace
+--------------------------------------------------------------------------------
+DP stage 1: Qwen/Qwen2.5-1.5B-Instruct / A0_current_vulnerable
+template: A0_current_vulnerable
+automatic prefix chars: 0
+prefix given in prompt: ''
+exact target scored by token DP: '727sqrt(621.136)'
+prefix Stage 0 cost: 0.00
+LLM target cost: 20.63
+whole score: 20.63
+decision: ESCALATE: 20.0 <= raw DP score 20.63 <= 32.0
+states expanded: 73
+finished paths: 7
+pruned paths: 0
+truncated: False
+elapsed: 0.64s
+note: ok
+
+DP stage 2: Qwen/Qwen2.5-1.5B-Instruct / C3_task_continue_field
+template: C3_task_continue_field
+automatic prefix chars: 0
+prefix given in prompt: ''
+exact target scored by token DP: '727sqrt(621.136)'
+prefix Stage 0 cost: 0.00
+LLM target cost: 27.24
+whole score: 27.24
+decision: ESCALATE: 20.0 <= raw DP score 27.24 <= 32.0
+states expanded: 73
+finished paths: 7
+pruned paths: 0
+truncated: False
+elapsed: 0.64s
+note: ok
+
+DP stage 3: mistralai/Mistral-7B-Instruct-v0.3 / A0_current_vulnerable
+template: A0_current_vulnerable
+automatic prefix chars: 0
+prefix given in prompt: ''
+exact target scored by token DP: '727sqrt(621.136)'
+prefix Stage 0 cost: 0.00
+LLM target cost: 20.95
+whole score: 20.95
+decision: ESCALATE: 20.0 <= raw DP score 20.95 <= 32.0
+states expanded: 391
+finished paths: 32
+pruned paths: 640
+truncated: True
+elapsed: 0.84s
+note: ok
+
+DP stage 4: mistralai/Mistral-7B-Instruct-v0.3 / C3_task_continue_field
+template: C3_task_continue_field
+automatic prefix chars: 0
+prefix given in prompt: ''
+exact target scored by token DP: '727sqrt(621.136)'
+prefix Stage 0 cost: 0.00
+LLM target cost: 24.95
+whole score: 24.95
+decision: ACCEPT: final raw DP score 24.95 >= 20.0
+states expanded: 391
+finished paths: 32
+pruned paths: 640
+truncated: True
+elapsed: 1.02s
+note: ok

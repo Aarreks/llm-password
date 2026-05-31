@@ -1,0 +1,60 @@
+LLM Password Routing Demo Report
+================================================================================
+Generated: 2026-05-31T08:27:48
+
+Configuration
+--------------------------------------------------------------------------------
+1.5B model: Qwen/Qwen2.5-1.5B-Instruct
+7B escalation allowed: True
+7B model: mistralai/Mistral-7B-Instruct-v0.3
+Input format: one raw password per line
+DP method: Experiment-1-style exact token DP over one raw target string
+No user-provided separators and no loop over all possible split positions
+Automatic prefix chars before target: 0
+DP reject threshold: whole_score < 20.0
+DP early accept threshold: whole_score > 32.0
+Stage 0 zxcvbn reject cutoff: 10.0
+Stage 0 patched reject cutoff: 10.0
+Aho bad-substring patterns loaded: 21555
+Stable zxcvbn substring length range: 2..32
+Stable zxcvbn max substring calls per password: 2500
+
+================================================================================
+Password 1: 'yOn7s78QJ?<c'
+Final verdict: ACCEPT
+Final reason: ACCEPT: raw DP score 32.37 > 32.0
+
+Stage 0 on whole password
+--------------------------------------------------------------------------------
+zxcvbn score: 4
+zxcvbn guesses_log10: 12.00
+patched Stage 0 log10: 10.98
+Markov/Aho penalty vs zxcvbn: 1.02
+stable zxcvbn substring candidates added: 66
+pwned exact: no (count=0, status=ok)
+pwned normalized/base variants: none found
+patched Stage 0 parse:
+  - [0:1] 'y' brute_char cost=1.41
+  - [1:3] 'On' stable_zxcvbn:dictionary cost=1.26
+  - [3:5] '7s' stable_zxcvbn:whole_substring cost=2.00
+  - [5:7] '78' stable_zxcvbn:sequence cost=1.30
+  - [7:12] 'QJ?<c' stable_zxcvbn:whole_substring cost=5.00
+Stage 0 decision: no reject; use raw token DP
+
+DP escalation trace
+--------------------------------------------------------------------------------
+DP stage 1: Qwen/Qwen2.5-1.5B-Instruct / A0_current_vulnerable
+template: A0_current_vulnerable
+automatic prefix chars: 0
+prefix given in prompt: ''
+exact target scored by token DP: 'yOn7s78QJ?<c'
+prefix Stage 0 cost: 0.00
+LLM target cost: 32.37
+whole score: 32.37
+decision: ACCEPT: raw DP score 32.37 > 32.0
+states expanded: 23
+finished paths: 6
+pruned paths: 0
+truncated: False
+elapsed: 0.48s
+note: ok
