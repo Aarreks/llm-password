@@ -4,17 +4,23 @@ This repository contains the final demo code and supporting experiments for an E
 
 The main idea is a password-checking router: cheap prechecks reject obvious weak passwords, and only borderline cases go to an LLM-based semantic predictability check. The LLM check uses bounded token dynamic programming (DP) to estimate how much probability the model assigns to generating the exact password string as its next output prefix.
 
-## Main demo notebook
+## Main demo notebooks
 
-Open:
+Open the original router:
 
 ```text
 notebooks/final_password_router_demo.ipynb
 ```
 
-The demo expects one raw password per line. Do not add split markers. Each DP stage scores one exact raw target string.
+Or, open the capped variant:
 
-Final policy used in the presentable demo branch:
+```text
+notebooks/capped_final_password_router_demo.ipynb
+```
+
+Both demos expect one raw password per line. Do not add split markers. Each DP stage scores one exact raw target string.
+
+Original presentable-demo policy:
 
 ```text
 Stage 0 zxcvbn reject cutoff:      log10 score < 10
@@ -26,11 +32,27 @@ No split scan:                     true
 Automatic prefix chars:            0
 ```
 
+Capped variant policy:
+
+```text
+Stage 0 zxcvbn reject cutoff:      log10 score < 10
+Stage 0 patched reject cutoff:     log10 score < 10
+Capped LLM-DP reject cutoff:       whole_score < 15
+Capped LLM-DP early accept cutoff: whole_score > 25
+DP cap per extra character:        2.5 log10 units
+Input format:                      one raw password per line
+No split scan:                     true
+Automatic prefix chars:            0
+```
+
 ## Repository layout
 
 ```text
 notebooks/final_password_router_demo.ipynb
-    Final Colab demo notebook.
+    Original Colab demo notebook using uncapped token-DP scores.
+
+notebooks/capped_final_password_router_demo.ipynb
+    Capped Colab demo notebook. This adds a brute-force suffix fallback cap to avoid giving unlimited credit for hard-to-model random-looking tails.
 
 notebooks/experiments/exp1d_token_dp/experiment1d_token_dp_reference.ipynb
     Reference Experiment 1 notebook for constrained token-DP scoring.
@@ -62,7 +84,7 @@ The Experiment 1 reference notebook is included because the final router's LLM s
 
 ### Experiment 2: prompt/template sensitivity
 
-The continuation-template experiment compares prompt wordings for LLM token-DP scoring. This motivates using continuation-style prompts rather than direct judgment prompts.
+The continuation-template experiment compares prompt wordings for LLM token-DP scoring. This motivates using continuation-style prompts rather than direct judgment prompts. Note that the direct judgements can be so bad that there are either no positives or no negatives, which can completely ruin the computation. The result given in the presentation cannot be deterministically reproduced.
 
 ### Experiment 2B: negative result for direct LLM rating
 
@@ -75,13 +97,15 @@ Earlier toy architecture notebooks, fake tests, intermediate router branches, an
 ## Running in Colab
 
 1. Upload or clone this repository in Colab.
-2. Run `notebooks/final_password_router_demo.ipynb` from the repository root so it can find `data/stage0_bad_substrings.csv`.
+2. Run either `notebooks/final_password_router_demo.ipynb` or `notebooks/capped_final_password_router_demo.ipynb` from the repository root so it can find `data/stage0_bad_substrings.csv`.
 3. The 1.5B model path is the practical default. Optional 7B escalation usually needs a stronger GPU.
 4. Do not enter real passwords you currently use.
 
 ## Notes on the score
 
 The LLM-DP score is a model-and-prompt-specific prefix log10 cost. It is not a literal real-world crack-time estimate. It estimates how much probability mass the tested model assigns to generating the exact password string as the next output prefix, using bounded Experiment-1-style path-sum DP.
+
+The capped variant keeps the same raw-password token-DP setup, but adds fallback edges of cost `C * extra_chars` with `C = 2.5`. This caps the extra-reward-per-character at 2.5, sort of how zxcvbn caps the extra-reward-per-character at 1.0. It is an experimental policy variant, included alongside the uncapped demo rather than replacing it.
 
 
 ## Included experiment results
