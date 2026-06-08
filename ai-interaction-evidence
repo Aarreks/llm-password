@@ -1,0 +1,13 @@
+# AI Interaction Evidence
+
+AI interaction is part of this project’s method and evaluation. The project tests LLM behavior directly through prompting, token-probability scoring, direct-rating failures, and router/debugging experiments.
+
+ChatGPT was also used during development for brainstorming, debugging, notebook revision, result interpretation, and report/presentation drafting.
+
+The project-relevant AI interaction is reflected in:
+- notebooks that test LLM prompts and token probabilities
+- result files from direct-rating and continuation-scoring experiments
+- commit history showing notebook/report/demo iteration
+- documentation describing the final router and limitations
+
+Raw conversations included informal and unrelated development discussion, so this file summarizes the project-relevant AI usage rather than treating raw chat logs as polished documentation.
