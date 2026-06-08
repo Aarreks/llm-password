@@ -1,69 +1,125 @@
 LLM Password Router repo manifest
 
+This repository contains the final demo code, supporting experiments, selected results, report/design artifacts, and AI interaction evidence for the ECE 202C LLM password-security project.
+
+Extracting from zip:
 This zip is flat at the repository root. Extract its contents directly into the cloned Git repository folder that contains `.git`.
 
-Files included:
-- .gitignore
-- MANIFEST.txt
-- README.md
-- data/README.md
-- data/stage0_bad_substrings.csv
-- notebooks/experiments/exp1d_token_dp/README.md
-- notebooks/experiments/exp1d_token_dp/exp1_passwords_100.csv
-- notebooks/experiments/exp1d_token_dp/experiment1d_token_dp_reference.ipynb
-- notebooks/experiments/exp2_template_sensitivity/experiment2_template_sensitivity.ipynb
-- notebooks/experiments/exp2_template_sensitivity/experiment2_template_sensitivity_passwords.csv
-- notebooks/experiments/exp2_template_sensitivity/experiment2_templates.csv
-- notebooks/experiments/exp2b_direct_rating_negative_result/README.md
-- notebooks/experiments/exp2b_direct_rating_negative_result/experiment2_template_sensitivity_passwords.csv
-- notebooks/experiments/exp2b_direct_rating_negative_result/experiment2b_direct_json_rating_negative_result.ipynb
-- notebooks/experiments/exp2b_direct_rating_negative_result/experiment2b_rating_templates.csv
-- notebooks/final_password_router_demo.ipynb
-- notebooks/stage0_bad_substrings.csv
-- requirements.txt
-- results/README.md
-- results/code_fragment_reject_interactive_run.txt
-- results/exp1d_32-32-32/README.md
-- results/exp1d_32-32-32/exp1d_raw_mistral7b_v03.csv
-- results/exp1d_32-32-32/exp1d_raw_qwen25_1p5b.csv
-- results/exp1d_32-32-32/exp1d_two_model_condition_summary.csv
-- results/exp1d_32-32-32/exp1d_two_model_dp_raw.csv
-- results/exp1d_32-32-32/exp1d_two_model_family_summary.csv
-- results/exp1d_32-32-32/exp1d_two_model_paired_linked_control.csv
-- results/exp1d_32-32-32/exp1d_two_model_password_summary.csv
-- results/exp1d_32-32-32/figures/exp1d_two_model_side_by_side.png
-- results/exp1d_32-32-32/figures/exp1d_zxcvbn_vs_best_llm_log10.png
-- results/exp1d_512-512-512/README.md
-- results/exp1d_512-512-512/exp1d_raw_mistral7b_v03.csv
-- results/exp1d_512-512-512/exp1d_raw_qwen25_1p5b.csv
-- results/exp1d_512-512-512/exp1d_two_model_condition_summary.csv
-- results/exp1d_512-512-512/exp1d_two_model_dp_raw.csv
-- results/exp1d_512-512-512/exp1d_two_model_family_summary.csv
-- results/exp1d_512-512-512/exp1d_two_model_paired_linked_control.csv
-- results/exp1d_512-512-512/exp1d_two_model_password_summary.csv
-- results/exp1d_512-512-512/figures/exp1d_two_model_side_by_side.png
-- results/exp1d_512-512-512/figures/exp1d_zxcvbn_vs_best_llm_log10.png
-- results/exp2_template_sensitivity/exp2_continuation_paired_summary.csv
-- results/exp2_template_sensitivity/exp2_continuation_raw.csv
-- results/exp2_template_sensitivity/exp2_continuation_template_condition_summary.csv
-- results/exp2_template_sensitivity/exp2_continuation_template_summary.csv
-- results/exp2_template_sensitivity/exp2_recommended_templates.json
-- results/exp2_template_sensitivity/exp2_structural_raw.csv
-- results/exp2_template_sensitivity/exp2_structural_template_label_summary.csv
-- results/exp2_template_sensitivity/exp2_structural_template_summary.csv
-- results/exp2_template_sensitivity/figures/exp2_continuation_template_comparison.png
-- results/exp2_template_sensitivity/figures/exp2_structural_template_comparison.png
-- results/exp2b_direct_rating_negative_result/exp2b_json_rating_approach_summary.csv
-- results/exp2b_direct_rating_negative_result/exp2b_json_rating_category_counts.csv
-- results/exp2b_direct_rating_negative_result/exp2b_json_rating_label_summary.csv
-- results/exp2b_direct_rating_negative_result/exp2b_json_rating_raw.csv
-- results/exp2b_direct_rating_negative_result/exp2b_json_rating_template_summary.csv
-- results/exp2b_direct_rating_negative_result/exp2b_recommended_json_rating_template.json
-- results/exp2b_direct_rating_negative_result/figures/exp2b_approach_best_auc.png
-- results/exp2b_direct_rating_negative_result/figures/exp2b_best_template_score_distribution.png
-- results/exp2b_direct_rating_negative_result/figures/exp2b_template_auc_vs_gap.png
-- results/math_structured_accept_report.txt
-- results/random_autoaccept_report.txt
-- results/stage0_stable_substring_rejects_report.txt
-- scripts/generate_stage0_bad_substrings.py
-- src/password_router_demo.py
+Top-level files:
+
+* .gitignore
+* MANIFEST.txt
+* README.md
+* requirements.txt
+* report.pdf
+* design.pdf
+* AI_INTERACTION.md
+
+Main demo notebooks:
+
+* notebooks/final_password_router_demo.ipynb
+  Original presentable router demo using uncapped LLM token-DP.
+* notebooks/capped_final_password_router_demo.ipynb
+  Experimental capped router variant using capped DP with brute-force-style fallback edges.
+
+Source code:
+
+* src/password_router_demo.py
+  Python code extracted from the final demo notebook.
+
+Data:
+
+* data/README.md
+* data/stage0_bad_substrings.csv
+  Stage 0 Aho-Corasick resource used by the demo notebook.
+
+Scripts:
+
+* scripts/generate_stage0_bad_substrings.py
+  Reproducibility/provenance script for generating a similar Stage 0 pattern list. The checked-in CSV is the one used by the demo.
+
+Experiment 1D:
+
+* notebooks/experiments/exp1d_token_dp/README.md
+* notebooks/experiments/exp1d_token_dp/exp1_passwords_100.csv
+* notebooks/experiments/exp1d_token_dp/experiment1d_token_dp_reference.ipynb
+
+Experiment 2:
+
+* notebooks/experiments/exp2_template_sensitivity/experiment2_template_sensitivity.ipynb
+* notebooks/experiments/exp2_template_sensitivity/experiment2_template_sensitivity_passwords.csv
+* notebooks/experiments/exp2_template_sensitivity/experiment2_templates.csv
+
+Experiment 2B:
+
+* notebooks/experiments/exp2b_direct_rating_negative_result/README.md
+* notebooks/experiments/exp2b_direct_rating_negative_result/experiment2_template_sensitivity_passwords.csv
+* notebooks/experiments/exp2b_direct_rating_negative_result/experiment2b_direct_json_rating_negative_result.ipynb
+* notebooks/experiments/exp2b_direct_rating_negative_result/experiment2b_rating_templates.csv
+
+Results:
+
+* results/README.md
+* results/code_fragment_reject_interactive_run.txt
+* results/math_structured_accept_report.txt
+* results/random_autoaccept_report.txt
+* results/stage0_stable_substring_rejects_report.txt
+
+Experiment 1D results:
+
+* results/exp1d_32-32-32/README.md
+* results/exp1d_32-32-32/exp1d_raw_mistral7b_v03.csv
+* results/exp1d_32-32-32/exp1d_raw_qwen25_1p5b.csv
+* results/exp1d_32-32-32/exp1d_two_model_condition_summary.csv
+* results/exp1d_32-32-32/exp1d_two_model_dp_raw.csv
+* results/exp1d_32-32-32/exp1d_two_model_family_summary.csv
+* results/exp1d_32-32-32/exp1d_two_model_paired_linked_control.csv
+* results/exp1d_32-32-32/exp1d_two_model_password_summary.csv
+* results/exp1d_32-32-32/figures/exp1d_two_model_side_by_side.png
+* results/exp1d_32-32-32/figures/exp1d_zxcvbn_vs_best_llm_log10.png
+
+Higher-budget Experiment 1D robustness results:
+
+* results/exp1d_512-512-512/README.md
+* results/exp1d_512-512-512/exp1d_raw_mistral7b_v03.csv
+* results/exp1d_512-512-512/exp1d_raw_qwen25_1p5b.csv
+* results/exp1d_512-512-512/exp1d_two_model_condition_summary.csv
+* results/exp1d_512-512-512/exp1d_two_model_dp_raw.csv
+* results/exp1d_512-512-512/exp1d_two_model_family_summary.csv
+* results/exp1d_512-512-512/exp1d_two_model_paired_linked_control.csv
+* results/exp1d_512-512-512/exp1d_two_model_password_summary.csv
+* results/exp1d_512-512-512/figures/exp1d_two_model_side_by_side.png
+* results/exp1d_512-512-512/figures/exp1d_zxcvbn_vs_best_llm_log10.png
+
+Experiment 2 results:
+
+* results/exp2_template_sensitivity/exp2_continuation_paired_summary.csv
+* results/exp2_template_sensitivity/exp2_continuation_raw.csv
+* results/exp2_template_sensitivity/exp2_continuation_template_condition_summary.csv
+* results/exp2_template_sensitivity/exp2_continuation_template_summary.csv
+* results/exp2_template_sensitivity/exp2_recommended_templates.json
+* results/exp2_template_sensitivity/exp2_structural_raw.csv
+* results/exp2_template_sensitivity/exp2_structural_template_label_summary.csv
+* results/exp2_template_sensitivity/exp2_structural_template_summary.csv
+* results/exp2_template_sensitivity/figures/exp2_continuation_template_comparison.png
+* results/exp2_template_sensitivity/figures/exp2_structural_template_comparison.png
+
+Experiment 2B results:
+
+* results/exp2b_direct_rating_negative_result/exp2b_json_rating_approach_summary.csv
+* results/exp2b_direct_rating_negative_result/exp2b_json_rating_category_counts.csv
+* results/exp2b_direct_rating_negative_result/exp2b_json_rating_label_summary.csv
+* results/exp2b_direct_rating_negative_result/exp2b_json_rating_raw.csv
+* results/exp2b_direct_rating_negative_result/exp2b_json_rating_template_summary.csv
+* results/exp2b_direct_rating_negative_result/exp2b_recommended_json_rating_template.json
+* results/exp2b_direct_rating_negative_result/figures/exp2b_approach_best_auc.png
+* results/exp2b_direct_rating_negative_result/figures/exp2b_best_template_score_distribution.png
+* results/exp2b_direct_rating_negative_result/figures/exp2b_template_auc_vs_gap.png
+
+Notes:
+
+* The final router notebooks expect one raw password per line.
+* Do not add split markers.
+* The original demo and capped demo are kept side by side because the capped version is an experimental policy variant.
+* Experiment 1D is a controlled continuation experiment; the final router scores whole raw passwords from prefix length 0.
+* Direct JSON rating is included as a negative result and is not used by the final router.
